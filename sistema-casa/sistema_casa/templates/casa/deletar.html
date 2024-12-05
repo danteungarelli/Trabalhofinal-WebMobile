@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Deletar imóvel{% endblock %}
+
+{% block content %}
+
+<form action = "/casa/deletar/{{object.pk}}/" method="post">
+    {% csrf_token %}
+
+    <center>
+        <div class = "alert alert-danger" role = "alert">
+            <p>Tem certeza que deseja excluir esse imóvel? "{{ object }}?</p>
+        </div>
+        <input type = "submit" value=" Confirmar " class = "btn btn-danger"/>
+
+    </center>
+</form>
+
+{% endblock %}

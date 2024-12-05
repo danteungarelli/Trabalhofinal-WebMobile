@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Casa{% endblock %}
+
+{% block content %}
+
+<form action = "/casa/{{object.pk}}/"
+method = "post" enctype="multipart/form-data">
+
+{% csrf_token %}
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="id_titulo" class="form-label">Titulo</label>
+                {{ form.titulo }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="id_num_quartos" class="form-label">Número de quartos</label>
+                {{ form.num_quartos }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="id_num_banheiros" class="form-label">Número de banheiros</label>
+                {{ form.num_banheiros }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="id_tipo" class="form-label">Tipo</label>
+                {{ form.tipo }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="id_foto" class="form-label">Foto</label>
+                {{ form.foto }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="id_area" class="form-label">Área</label>
+                {{ form.area }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="id_status" class="form-label">Status</label>
+                {{ form.status }}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Editar Casa</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

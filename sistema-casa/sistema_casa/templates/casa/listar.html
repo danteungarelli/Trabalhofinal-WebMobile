@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Casas{% endblock %}
+
+{% block content %}
+  <div class="text-center mt-5 mb-3">
+    <h1>Lista de Casas</h1>
+  
+  </div>
+
+  {% if casas|length > 0 %}
+    <div class="container">
+      <div class="row">
+        {% for casas in casas %}
+          <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top"src="{{casas.foto.url}}" alt="Imagem do {{casas.titulo}}">
+              <div class="card-body">
+                <h5 class="card-title">{{ casas.titulo }} </h5>
+                <p class="card-text">
+                  Numero de quartos: {{ casas.get_num_quartos_display }} <br>
+                  Numero de banheiros: {{ casas.get_num_banheiros_display }}<br>
+                  Status: {{casas.get_status_display}}<br>
+                  Área: {{casas.area}}<br>
+                  Casa cadastrada por:{{casas.usuario}}
+                </p>
+                <a href="{% url 'editar-casas' casas.id %}" class="btn btn-primary">Editar casa</a>
+                <a href="{% url 'deletar-casas' casas.id %}" class="btn btn-primary">Deletar casa</a>
+             
+               
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p class="text-center">Nenhuma casa cadastrada.</p>
+  {% endif %}
+{% endblock %}

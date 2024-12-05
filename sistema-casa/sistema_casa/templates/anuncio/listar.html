@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Anúncios{% endblock %}
+
+{% block content %}
+  <div class="text-center mt-5 mb-3">
+    <h1>Lista de Anúncios</h1>
+  </div>
+
+  {% if anuncios|length > 0 %}
+    <div class="container">
+      <div class="row">
+        {% for anuncio in anuncios %}
+          <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{ anuncio.casa.foto.url }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ anuncio.titulo }}</h5>
+                <p class="card-text">
+                  Preço: R$ {{ anuncio.preco }}<br>
+                  Publicado por: {{ anuncio.usuario.username }}<br>
+                  Descrição: {{anuncio.descricao}}
+                </p>
+                {% if anuncio.usuario == request.user %}
+                  <a href="{% url 'deletar-anuncio' anuncio.id %}" class="btn btn-primary">Excluir Anúncio</a>
+                  <a href="{% url 'editar-anuncio' anuncio.id %}" class="btn btn-primary">Editar Anúncio</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p class="text-center">Nenhum anúncio cadastrado.</p>
+  {% endif %}
+{% endblock %}
